@@ -1,3 +1,16 @@
 steps:
-  - label: Example Test
-    command: echo "Hello!"
+  - block: "Upload csv file content"
+    fields:
+      - text: "CSV File"
+        key: CSV_FILE
+        required: true
+
+  - label: "Parsing CSV file"
+    plugins:
+      - docker-compose#v2.5.1:
+          run: jq
+          config: .buildkite/scripts/docker-compose.yaml
+      - ACloudGuru/metadata-env:
+          keys:
+            - CSV_FILE
+
