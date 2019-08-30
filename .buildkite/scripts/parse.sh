@@ -4,4 +4,4 @@ echo "Hello, world!"
 
 echo "CSV_FILE:"
 
-echo ${CSV_FILE}
+echo "${CSV_FILE}"
