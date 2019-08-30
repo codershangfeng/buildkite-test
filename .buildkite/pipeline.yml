@@ -9,7 +9,7 @@ steps:
     plugins:
       - docker-compose#v2.5.1:
           run: jq
-          config: .buildkite/scripts/docker-compose.yaml
+          config: .buildkite/scripts/docker-compose.yml
       - ACloudGuru/metadata-env:
           keys:
             - CSV_FILE
