@@ -6,10 +6,8 @@ steps:
         required: true
 
   - label: "Parsing CSV file"
+    command: .buildkite/scripts/parse.sh
     plugins:
-      - docker-compose#v2.5.1:
-          run: jq
-          config: .buildkite/scripts/docker-compose.yml
       - ACloudGuru/metadata-env:
           keys:
             - CSV_FILE
