@@ -1,3 +1,9 @@
+env:
+  ACCOUNT_ID_DEV: '123'
+  ACCOUNT_ID_STAGING: '321'
+  ACCOUNT_ID_PRODUCTION: '1234567'
+  ASSUME_ROLE: MyBatchUploadRole
+
 steps:
   - block: "Upload csv file content"
     fields:
@@ -12,3 +18,23 @@ steps:
           keys:
             - CSV_FILE
 
+  - wait
+
+  - label: "Batch send messages to Dev"
+    env:
+      TARGET_ACCOUNT_ID: ${ACCOUNT_ID_DEV}
+#    plugins:
+#      - cultureamp/aws-assume-role:
+#          role: arn:aws:iam::${ACCOUNT_ID_DEV}:role/payments/${ASSUME_ROLE}
+    command: .buildkite/scripts/send-messages.sh
+
+  - block
+
+  - label: "Batch send messages to Production"
+    branches: "master"
+    env:
+      TARGET_ACCOUNT_ID: ${ACCOUNT_ID_PRODUCTION}
+#    plugins:
+#      - cultureamp/aws-assume-role:
+#          role: arn:aws:iam::${ACCOUNT_ID_DEV}:role/payments/${ASSUME_ROLE}
+    command: .buildkite/scripts/send-messages.sh

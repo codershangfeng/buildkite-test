@@ -1,5 +1,11 @@
 #!/bin/bash
 
-echo "Hello, world"
+set -euo pipefail
 
-echo "CSV_FILE: ${CSV_FILE}"
+
+
+echo "Start"
+
+echo ${CSV_FILE} | jq -R 'split(",")' | jq '{requestType: .[0], registerNumber: .[1], storeId: .[2], storeAddress: .[3]}' >> temp
+
+echo "end"
