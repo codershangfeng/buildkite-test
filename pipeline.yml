@@ -1,0 +1,19 @@
+steps:
+  - block: "Publish message to SQS"
+    fields:
+      - text: "CSV File"
+        key: CSV_FILE
+        required: true
+
+  - label: "Test sending message to dev :amazon-sqs:"
+    plugins:
+      - ACloudGuru/metadata-env:
+          keys:
+            - CSV_FILE
+
+  - block: "Publish message to Prod Alipay onboarding message queue?"
+  - label: ":warning: Send message to production :amazon-sqs:"
+    plugins:
+      - ACloudGuru/metadata-env:
+          keys:
+            - CSV_FILE
