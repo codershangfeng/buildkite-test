@@ -23,7 +23,7 @@ printf "${GREEN}Retrieved successfully for ${CSV_FILE} ${NC}\n"
 echo "************** Start Parsing and Sending ***************"
 echo "Start parsing and sending message to SQS"
 caids=`jq -R 'split("\t")' <<< "${CSV_FILE}"  \
- | jq '[inputs | {requestType: .[0], registerNumber: .[1], storeId: .[2], storeAddress: .[3]}]'`
+ | jq '[{requestType: .[0], registerNumber: .[1], storeId: .[2], storeAddress: .[3]}]'`
 
 
 caids_size=`echo ${caids} | jq '. | length'`
