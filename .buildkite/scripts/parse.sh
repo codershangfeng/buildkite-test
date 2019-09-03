@@ -20,7 +20,7 @@ CSV_DATA=`cat ${CSV_FILE_URL} | sed -e 's/^"//' -e 's/"$//'`
 
 echo "************** Start Parsing and Sending ***************"
 echo "Start parsing and sending message to SQS"
-caids=`jq -R 'split("\",\"")' <<< "${CSV_DATA}"  \
+caids=`jq -R 'split("\t")' <<< "${CSV_DATA}"  \
  | jq '[inputs | {requestType: .[0], registerNumber: .[1], storeId: .[2], storeAddress: .[3]}]'`
 
 
