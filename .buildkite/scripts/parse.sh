@@ -16,6 +16,8 @@ echo "Retrieve CSV file from S3: ${CSV_FILE_URL}"
 # aws s3 ....  CSV_FILE_URL
 printf "${GREEN}Retrieved successfully${NC}\n"
 
+printf "${GREEN}Retrieved successfully for ${CSV_FILE} ${NC}\n"
+
 # CSV_DATA=`cat ${CSV_FILE} | sed -e 's/^"//' -e 's/"$//'`
 
 echo "************** Start Parsing and Sending ***************"
