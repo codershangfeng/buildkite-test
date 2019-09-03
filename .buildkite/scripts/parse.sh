@@ -16,11 +16,11 @@ echo "Retrieve CSV file from S3: ${CSV_FILE_URL}"
 # aws s3 ....  CSV_FILE_URL
 printf "${GREEN}Retrieved successfully${NC}\n"
 
-CSV_DATA=`cat ${CSV_FILE} | sed -e 's/^"//' -e 's/"$//'`
+# CSV_DATA=`cat ${CSV_FILE} | sed -e 's/^"//' -e 's/"$//'`
 
 echo "************** Start Parsing and Sending ***************"
 echo "Start parsing and sending message to SQS"
-caids=`jq -R 'split("\t")' <<< "${CSV_DATA}"  \
+caids=`jq -R 'split("\t")' <<< "${CSV_FILE}"  \
  | jq '[inputs | {requestType: .[0], registerNumber: .[1], storeId: .[2], storeAddress: .[3]}]'`
 
 
