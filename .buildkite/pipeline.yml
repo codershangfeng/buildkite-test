@@ -17,7 +17,7 @@ steps:
     plugins:
       - docker-compose#v3.0.3:
           run: batch-publish-message
-          config: .buildkite/docker-compose.yml
+          config: .buildkite/scripts/docker-compose.yml
       - ACloudGuru/metadata-env:
           keys:
             - MERCHANTS_INFO
