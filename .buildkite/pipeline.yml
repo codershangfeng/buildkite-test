@@ -6,10 +6,10 @@ env:
 
 steps:
   - block: ":file_cabinet: Paste merchants information in dev"
-      fields:
-        - text: "Merchants information in TSV format"
-          key: MERCHANTS_INFO
-          required: true
+    fields:
+      - text: "Merchants information in TSV format"
+        key: MERCHANTS_INFO
+        required: true
 
   - label: "Parsing CSV file"
     command: .buildkite/scripts/parse.sh
