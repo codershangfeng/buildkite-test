@@ -1,8 +1,10 @@
 version: "3"
 services:
-  jq:
+  batch-publish-message:
     image: stedolan/jq
     volumes:
       - ../../:/workdir
     working_dir: /workdir
     command: .buildkite/scripts/parse.sh
+    environment:
+      - MERCHANTS_INFO

@@ -11,11 +11,13 @@ steps:
         key: MERCHANTS_INFO
         required: true
 
-  - label: "Parsing CSV file"
-    command: .buildkite/scripts/parse.sh
+  - label: "Sending messages to dev"
+    env:
+      TARGET_ACCOUNT_ID: ${ACCOUNT_ID_DEV}
     plugins:
+      - docker-compose#v3.0.3:
+          run: batch-publish-message
+          config: .buildkite/docker-compose.yml
       - ACloudGuru/metadata-env:
           keys:
             - MERCHANTS_INFO
-
-  - wait
